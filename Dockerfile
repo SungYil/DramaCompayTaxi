@@ -6,7 +6,7 @@ LABEL maintainer="dkdkenen2006@gmail.com"
 #이 어플이 도커 컨테이너 내부에서 8080포트를 가지고 감.
 EXPOSE 8080
 
-COPY InfoStarMainServer-1.0-SNAPSHOT.jar .
+COPY DramaCompany-1.0-SNAPSHOT.jar .
 
 #BUILD시 생성되는 jar 파일의 상대경로.
 ARG JAR_FILE=DramaCompany-1.0-SNAPSHOT.jar
