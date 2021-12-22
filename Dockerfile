@@ -12,7 +12,7 @@ COPY DramaCompay-1.0-SNAPSHOT.jar .
 ARG JAR_FILE=DramaCompay-1.0-SNAPSHOT.jar
 
 #JAR_FILE에 이름.
-ADD ${JAR_FILE} DramaCompany.jar
+ADD ${JAR_FILE} DramaCompay.jar
 
 #어플리케이션을 실행시키기 위한 명령어
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/DramaCompay.jar"]
