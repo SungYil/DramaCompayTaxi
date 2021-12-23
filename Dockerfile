@@ -1,20 +1,22 @@
-FROM adoptopenjdk/openjdk11
+FROM adoptopenjdk:openjdk11 AS builder
 
-#이미지를 관리하는 사람
-LABEL maintainer="dkdkenen2006@gmail.com"
+#gradle 빌드를 하기위한 파일 복사 및 웹어플리케이션 소스 복사
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle .
+COPY src src
 
-CMD ["./mvnw", "clean", "package"]
+#gradlew에 권한을 부여한 뒤 gradlew를 사용해 실행가능한 jar 파일생성.
+RUN chmod +x ./gradlew
+RUN ./gradlew bootJar
 
-#이 어플이 도커 컨테이너 내부에서 8080포트를 가지고 감.
+FROM adoptopenjdk:openjdk11
+
+#builder 이미지에서 build/libs/*.jar 파일을 해당 파일명으로 복사
+COPY --from=builder build/libs/*.jar DramaCompay.jar
+
 EXPOSE 8080
 
-COPY DramaCompay-1.0-SNAPSHOT.jar .
-
-#BUILD시 생성되는 jar 파일의 상대경로.
-ARG JAR_FILE=DramaCompay-1.0-SNAPSHOT.jar
-
-#JAR_FILE에 이름.
-ADD ${JAR_FILE} DramaCompay.jar
-
-#어플리케이션을 실행시키기 위한 명령어
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/DramaCompay.jar"]
+#jar 파일 실행
+ENTRYPOINT ["java","-jar","/app.jar"]
