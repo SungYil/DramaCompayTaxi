@@ -1,7 +1,9 @@
-FROM adoptopenjdk:11.0.10_9-jre-hotspot
+FROM adoptopenjdk/openjdk11
 
 #이미지를 관리하는 사람
 LABEL maintainer="dkdkenen2006@gmail.com"
+
+CMD ["./mvnw", "clean", "package"]
 
 #이 어플이 도커 컨테이너 내부에서 8080포트를 가지고 감.
 EXPOSE 8080
