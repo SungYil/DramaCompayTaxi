@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.Statement;
 
-public class H2Runner implements ApplicationRunner {
+public class H2Runner{ /*implements ApplicationRunner {
 
     @Autowired
     DataSource dataSource;
@@ -26,6 +26,6 @@ public class H2Runner implements ApplicationRunner {
             Statement statement=connection.createStatement();
 
         }
-    }
+    }*/
 
 }

@@ -19,4 +19,4 @@ COPY --from=builder build/libs/*.jar DramaCompay.jar
 EXPOSE 8080
 
 #jar 파일 실행
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","/DramaCompay.jar"]
