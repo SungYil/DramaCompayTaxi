@@ -1,4 +1,4 @@
-package entity;
+package com.dramacompaytaxi.entity;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
